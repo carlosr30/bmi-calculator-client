@@ -51,13 +51,19 @@ const BMICalculatorForm = () => {
         }
 
         axios
-            .post("http://localhost:4000/api/v1/bmi", payload)
+            .post("/v1/bmi", payload)
             .then((res) => {
                 setBMI(res.data.bmi)
                 setClassification(res.data.classification)
             })
             .catch((err) => {
-                setErrors(err.response.data)
+                switch (err.response.status) {
+                    case 400:
+                        setErrors(err.response.data)
+                        break
+                    default:
+                        return
+                }
             })
     }
 

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const bootstrapAxios = async () => {
+export const bootstrapAxios = () => {
     axios.defaults.baseURL = process.env.REACT_APP_API_URL
     axios.interceptors.response.use(
         (response) => {
@@ -8,6 +8,7 @@ export const bootstrapAxios = async () => {
         },
         (error) => {
             switch (error.response.status) {
+                case 0:
                 case 500:
                     alert("Something went wrong")
                     break
