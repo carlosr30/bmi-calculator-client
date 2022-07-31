@@ -1,6 +1,4 @@
-# Nodetification
-
-BMI Calculator Server
+# BMI Calculator Client
 
 ## Requirements
 
