@@ -10,11 +10,18 @@ import {
 } from "@mui/material"
 
 import { Box } from "@mui/system"
+import React from "react"
 import axios from "axios"
 import { useState } from "react"
 
 const BMICalculatorForm = () => {
-    const measurementUnitConfig = {
+    const measurementUnitConfig: {
+        [key: string]: {
+            height: string,
+            heightSecondary?: string,
+            weight: string,
+        }
+    } = {
         METRIC: {
             height: "Height (m)",
             weight: "Weight (kgs)",
@@ -27,27 +34,34 @@ const BMICalculatorForm = () => {
         },
     }
 
-    const [measurementUnit, setMeasurementUnit] = useState("STANDARD")
-    const [height, setHeight] = useState("")
-    const [heightSecondary, setHeightSecondary] = useState("")
-    const [weight, setWeight] = useState("")
+    const [measurementUnit, setMeasurementUnit] = useState<string>("STANDARD")
+    const [height, setHeight] = useState<string>("")
+    const [heightSecondary, setHeightSecondary] = useState<string>("")
+    const [weight, setWeight] = useState<string>("")
 
     const [bmi, setBMI] = useState(null)
     const [classification, setClassification] = useState(null)
 
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState<{
+        [key: string]: string
+    }>({})
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const payload = {
+        const payload: {
+            measurementUnit: string,
+            height: number,
+            heightSecondary?: number
+            weight: number,
+        } = {
             measurementUnit: measurementUnit,
-            height: height,
-            weight: weight,
+            height: +height,
+            weight: +weight,
         }
 
         if (measurementUnit === "STANDARD") {
-            payload.heightSecondary = heightSecondary
+            payload.heightSecondary = +heightSecondary
         }
 
         axios

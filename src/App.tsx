@@ -12,9 +12,9 @@ import React from "react"
 
 const App = () => {
     return (
-        <Container maxwidth="lg">
+        <Container>
             <CssBaseline />
-
+``
             <Grid
                 container
                 justifyContent="center"
