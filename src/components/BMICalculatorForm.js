@@ -15,19 +15,19 @@ import { useState } from "react"
 
 const BMICalculatorForm = () => {
     const measurementUnitConfig = {
-        M_AND_KG: {
+        METRIC: {
             height: "Height (m)",
             weight: "Weight (kgs)",
         },
 
-        FT_IN_AND_LBS: {
+        STANDARD: {
             height: "Height (ft)",
             heightSecondary: "Height (in)",
             weight: "Weight (lbs)",
         },
     }
 
-    const [measurementUnit, setMeasurementUnit] = useState("FT_IN_AND_LBS")
+    const [measurementUnit, setMeasurementUnit] = useState("STANDARD")
     const [height, setHeight] = useState("")
     const [heightSecondary, setHeightSecondary] = useState("")
     const [weight, setWeight] = useState("")
@@ -46,7 +46,7 @@ const BMICalculatorForm = () => {
             weight: weight,
         }
 
-        if (measurementUnit === "FT_IN_AND_LBS") {
+        if (measurementUnit === "STANDARD") {
             payload.heightSecondary = heightSecondary
         }
 
@@ -79,15 +79,15 @@ const BMICalculatorForm = () => {
                     onChange={(e) => setMeasurementUnit(e.target.value)}
                 >
                     <FormControlLabel
-                        value="M_AND_KG"
-                        control={<Radio />}
-                        label="Metric"
-                    />
-
-                    <FormControlLabel
-                        value="FT_IN_AND_LBS"
+                        value="STANDARD"
                         control={<Radio />}
                         label="Standard"
+                    />
+                    
+                    <FormControlLabel
+                        value="METRIC"
+                        control={<Radio />}
+                        label="Metric"
                     />
                 </RadioGroup>
             </FormControl>
