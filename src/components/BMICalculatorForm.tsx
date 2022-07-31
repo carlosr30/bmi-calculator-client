@@ -23,7 +23,7 @@ const BMICalculatorForm = () => {
         }
     } = {
         METRIC: {
-            height: "Height (m)",
+            height: "Height (cm)",
             weight: "Weight (kgs)",
         },
 
